@@ -1,20 +1,15 @@
-import * as React from 'react';
-//import all necessary libraries here, e.g., Material-UI Typography, as follows
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Grid, Typography, TextField } from '@mui/material';
 
-const ReviewTitle = () => {
-
-  //states declarations
-  //constants and functions declarations
-
+const ReviewTitle = ({ enteredTitle, handleTitleChange }) => {
   return (
-    <>
-    
-    {/* JSX block */}
-
-
-    </>
+    <Grid item xs={12}>
+      <Typography variant="subtitle1" gutterBottom>
+        Enter your review title:
+      </Typography>
+      <TextField value={enteredTitle} onChange={handleTitleChange} fullWidth/>
+    </Grid>
   );
-}
+};
 
 export default ReviewTitle;

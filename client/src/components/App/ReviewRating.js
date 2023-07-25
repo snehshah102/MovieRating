@@ -1,20 +1,19 @@
-import * as React from 'react';
-//import all necessary libraries here, e.g., Material-UI Typography, as follows
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import {Grid, Typography, Radio, RadioGroup, FormControlLabel} from '@mui/material';
 
-const ReviewRating = () => {
-
-  //states declarations
-  //constants and functions declarations
-
+const ReviewRating = ({ selectedRating, handleRatingChange }) => {
   return (
-    <>
-    
-    {/* JSX block */}
-
-
-    </>
+    <Grid item xs={12}>
+      <Typography variant="subtitle1" gutterBottom>
+        Select the rating:
+      </Typography>
+      <RadioGroup value={selectedRating} onChange={handleRatingChange} row>
+        {[1, 2, 3, 4, 5].map((rating) => (
+          <FormControlLabel key={rating} value={rating.toString()} control={<Radio />} label={rating.toString()} />
+        ))}
+      </RadioGroup>
+    </Grid>
   );
-}
+};
 
 export default ReviewRating;

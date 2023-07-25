@@ -1,18 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 import Review from './Review';
-
+import { Grid } from '@mui/material';
 
 const App = () => {
-
-
   return (
     <div>
-        <h1>MSci 245 - D1 template </h1>
-      {/* Render <Review /> child component */}
-
-
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Review />
+        </Grid>
+      </Grid>
     </div>
   );
-}
+};
 
 export default App;

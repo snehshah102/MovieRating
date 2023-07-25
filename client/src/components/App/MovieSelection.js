@@ -1,20 +1,21 @@
-import * as React from 'react';
-//import all necessary libraries here, e.g., Material-UI Typography, as follows
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Grid, Typography, Select, MenuItem } from '@mui/material';
 
-const MovieSelection = () => {
-
-  //states declarations
-  //constants and functions declarations
-
+const MovieSelection = ({ movies, selectedMovie, handleMovieChange }) => {
   return (
-    <>
-    
-    {/* JSX block */}
-
-
-    </>
+    <Grid item xs={12}>
+      <Typography variant="subtitle1" gutterBottom>
+        Select a movie:
+      </Typography>
+      <Select value={selectedMovie} onChange={handleMovieChange} fullWidth >
+        {movies?.map((movie) => (
+          <MenuItem key={movie.id} value={movie.id}>
+            {movie.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </Grid>
   );
-}
+};
 
 export default MovieSelection;
