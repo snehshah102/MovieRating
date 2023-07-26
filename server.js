@@ -80,6 +80,30 @@ app.post('/api/addReview', (req, res) => {
   connection.end();
 });
 
+app.post('/api/searchMovies', (req, res) => {
+
+  let connection = mysql.createConnection(config);
+  let searchData = req.body;
+  let data = [
+    searchData.movieName,
+    searchData.actorName,
+    searchData.directorName,
+   
+  ];
+
+  connection.query(sql, data, (error, results) => {
+    if (error) {
+      res.send({express : error});
+    }
+    let string = JSON.stringify(results);
+    res.send({express : string});
+  });
+
+  connection.end();
+});
+
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 export default app;
+

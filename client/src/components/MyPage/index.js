@@ -8,7 +8,7 @@ const MyPage = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Movie Review App
+            Navigation Bar
           </Typography>
           <Button component={Link} to="/" color="inherit">Landing</Button>
           <Button component={Link} to="/search" color="inherit">Search</Button>
