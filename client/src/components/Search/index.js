@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Button, TextField, Stack } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, TextField, Stack, Grid, Box, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [movieName, setMovieName] = useState('');
   const [actorName, setActorName] = useState('');
   const [directorName, setDirectorName] = useState('');
-  const [movieResults, setMovieResults] = useState('');
-
-  useEffect(() => {
-    callApisearchMovies()
-      .then(res => {
-        console.log("Deliverable 2: ", res)
-        var parsed = JSON.parse(res.express);
-        console.log("Deliverable 2: ", parsed);
-        setMovieName(parsed);
-      })
-  }, []);
+  const [movieResults, setMovieResults] = useState([]);
 
   const handleMovieNameChange = (event) => {
     setMovieName(event.target.value);
@@ -33,16 +23,13 @@ const Search = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-   
+    // Call the API to search for movies using the entered criteria
     callApisearchMovies()
       .then((res) => {
-        console.log("Search Results: ", res);
-        setMovieResults(res.express); 
+        console.log("Results: ", res);
+        
+        setMovieResults(JSON.parse(res.express)); // Set the search results to state
       })
-      .catch((error) => {
-        console.error("Error while searching: ", error.message);
-        setMovieResults(''); 
-      });
   };
 
   const callApisearchMovies = async () => {
@@ -50,7 +37,7 @@ const Search = () => {
     const searchBar = {
       movieName: movieName,
       actorName: actorName,
-      directorName: directorName,
+      directorName: directorName
     };
 
     const response = await fetch(url, {
@@ -79,23 +66,29 @@ const Search = () => {
           <Button component={Link} to="/mypage" color="inherit">My Page</Button>
         </Toolbar>
       </AppBar>
-      <form onSubmit={handleSubmit}>
+  
         <Stack spacing={2} alignItems="center">
-          <TextField label="Movie Name" value={movieName} onChange={handleMovieNameChange} style={{ width: '75%', padding: '0.5rem' }}/>
-          <TextField label="Actor Name" value={actorName} onChange={handleActorNameChange} style={{ width: '75%', padding: '0.5rem' }}/>
-          <TextField label="Director Name" value={directorName} onChange={handleDirectorNameChange} style={{ width: '75%', padding: '0.5rem' }}/>
-          <Button type="submit" variant="contained" color="primary">
+          <TextField label="Movie Name" value={movieName} onChange={handleMovieNameChange} style={{ width: '75%', padding: '0.5rem' }} />
+          <TextField label="Actor Name" value={actorName} onChange={handleActorNameChange} style={{ width: '75%', padding: '0.5rem' }} />
+          <TextField label="Director Name" value={directorName} onChange={handleDirectorNameChange} style={{ width: '75%', padding: '0.5rem' }} />
+          <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
             Submit
           </Button>
         </Stack>
-      </form>
-      {/*Display Results*/}
-      {movieResults && (
-        <div>
-          <h2>Search Results</h2>
-          <pre>{movieResults}</pre>
-        </div>
-      )}
+        <Box p={4}>
+        <Grid container justifyContent="center" spacing={3}>
+          {movieResults?.map((movie) => (
+            <Grid item xs={12} sm={6} md={4} key={movie.id}>
+              <Paper elevation={3} sx={{ p: 2, borderRadius: 8 }}>
+                <h2>Movie Name: {movie.movie_title}</h2>
+                <h2>Director Name: {movie.director_names}</h2>
+                <h2>Reviews: {movie.review_contents}</h2> 
+                <h2>Average Score: {movie.average_rating}</h2>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </>
   );
 };

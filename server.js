@@ -82,16 +82,50 @@ app.post('/api/addReview', (req, res) => {
 
 app.post('/api/searchMovies', (req, res) => {
 
-  let connection = mysql.createConnection(config);
-  let searchData = req.body;
-  let data = [
-    searchData.movieName,
-    searchData.actorName,
-    searchData.directorName,
-   
-  ];
+  let movieName = req.body.movieName;
+  let actorName = req.body.actorName;
+  let directorName = req.body.directorName;
 
-  connection.query(sql, data, (error, results) => {
+  let connection = mysql.createConnection(config);
+  let sql = `SELECT m.name AS movie_title, d.director_names, a.actorName, r.review_contents, r.average_rating 
+FROM movies m
+JOIN (
+  SELECT 
+      movie_id, 
+      GROUP_CONCAT(CONCAT(ac.first_name, ' ', ac.last_name)) AS actorName 
+  FROM roles rl
+  JOIN actors ac ON ac.id = rl.actor_id
+  GROUP BY movie_id
+  HAVING actorName LIKE '%${actorName}%'
+) AS a ON m.id = a.movie_id
+LEFT JOIN (
+  SELECT 
+      rw.movieID, 
+      GROUP_CONCAT(rw.reviewContent) AS review_contents, 
+      GROUP_CONCAT(rw.reviewScore) AS review_scores, 
+      AVG(rw.reviewScore) AS average_rating 
+  FROM Review rw
+  GROUP BY rw.movieID
+) AS r ON m.id = r.movieID
+JOIN (
+  SELECT 
+      m.id, 
+      m.name AS movie_title, 
+      GROUP_CONCAT(CONCAT(d.first_name, ' ', d.last_name)) AS director_names 
+  FROM directors d
+  JOIN 
+      movies_directors md ON md.director_id = d.id
+  JOIN movies m ON m.id = md.movie_id
+  GROUP BY 
+      m.name, 
+      m.id
+  HAVING director_names LIKE '%${directorName}%'
+) AS d ON d.id = m.id
+WHERE m.name LIKE '%${movieName}%';`
+
+
+
+  connection.query(sql, (error, results) => {
     if (error) {
       res.send({express : error});
     }

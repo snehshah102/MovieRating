@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Review from '../Review';
 import { Grid } from '@mui/material';
 import Landing from '../Landing';
 import Search from '../Search';
 import MyPage from '../MyPage';
+import Review from '../Review';
 
 const App = () => {
   return (

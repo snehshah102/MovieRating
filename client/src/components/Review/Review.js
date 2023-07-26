@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography, Button, Box } from '@mui/material';
 import MovieSelection from './MovieSelection';
-import ReviewTitle from './ReviewTitle';
-import ReviewBody from './ReviewBody';
-import ReviewRating from './ReviewRating';
+import ReviewTitle from './ReviewTitle'; 
+import ReviewBody from './ReviewBody'; 
+import ReviewRating from './ReviewRating'; 
 
 const Review = () => {
   const [movies, setMovies] = useState();
