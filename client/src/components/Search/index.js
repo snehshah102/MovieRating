@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const Landing = () => {
+const Search = () => {
   return (
     <>
       <AppBar position="static">
@@ -20,4 +20,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Search;

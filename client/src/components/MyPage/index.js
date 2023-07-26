@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const Landing = () => {
+const MyPage = () => {
   return (
     <>
       <AppBar position="static">
@@ -15,9 +15,9 @@ const Landing = () => {
           <Button component={Link} to="/review" color="inherit">Review</Button>
           <Button component={Link} to="/mypage" color="inherit">My Page</Button>
         </Toolbar>
-      </AppBar>
+      </AppBar>     
     </>
   );
 };
 
-export default Landing;
+export default MyPage;
