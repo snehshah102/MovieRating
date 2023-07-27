@@ -7,14 +7,11 @@ const MyPage = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
+    // Fetch movie trailers from the backend API
     fetch('/api/getTrailers')
       .then((response) => response.json())
       .then((data) => {
-        const uniqueTrailers = Array.from(new Set(data.express.map(movie => movie.id)))
-          .map(id => {
-            return data.express.find(movie => movie.id === id)
-          });
-        setTrailers(uniqueTrailers);
+        setTrailers(data.express);
       })
       .catch((error) => {
         console.error('Error fetching movie trailers:', error);
@@ -62,11 +59,7 @@ const MyPage = () => {
           </Typography>
           <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
             <InputLabel>Select a movie</InputLabel>
-            <Select
-              value={selectedMovie ? selectedMovie.id : ''}
-              onChange={handleMovieChange}
-              label="Select a movie"
-            >
+            <Select value={selectedMovie ? selectedMovie.id : ''} onChange={handleMovieChange} label="Select a movie">
               {trailers.map((movie) => (
                 <MenuItem key={movie.id} value={movie.id}>
                   {movie.title}
@@ -80,13 +73,7 @@ const MyPage = () => {
                 {selectedMovie.title}
               </Typography>
               <Box display="flex" justifyContent="center" mb={3}>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={selectedMovie.embedUrl}
-                  title={selectedMovie.title}
-                  allowFullScreen
-                ></iframe>
+                <iframe width="560" height="315" src={selectedMovie.embedUrl} title={selectedMovie.title} allowFullScreen ></iframe>
               </Box>
               <Box display="flex" justifyContent="center" gap={2}>
                 <Button variant="contained" color="primary" onClick={handleWatchOnYouTube}>
