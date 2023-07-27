@@ -136,6 +136,21 @@ WHERE m.name LIKE '%${movieName}%';`
   connection.end();
 });
 
+app.get('/api/getTrailers', (req, res) => {
+  let connection = mysql.createConnection(config);
+  let sql = 'SELECT id, title, embedUrl FROM trailers';
+
+  connection.query(sql, (error, results) => {
+    if (error) {
+      res.send({ express: 'Error fetching movie trailers' });
+    } else {
+      res.send({ express: results });
+    }
+  });
+
+  connection.end();
+});
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
