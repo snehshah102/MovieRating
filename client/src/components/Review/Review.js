@@ -5,7 +5,7 @@ import ReviewTitle from './ReviewTitle';
 import ReviewBody from './ReviewBody'; 
 import ReviewRating from './ReviewRating'; 
 
-const Review = () => {
+const ReviewPage = () => {
   const [movies, setMovies] = useState();
   const [selectedMovie, setSelectedMovie] = useState('');
   const [enteredTitle, setEnteredTitle] = useState('');
@@ -218,4 +218,4 @@ const Review = () => {
   );
 };
 
-export default Review;
+export default ReviewPage;

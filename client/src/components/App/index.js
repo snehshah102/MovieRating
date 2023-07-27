@@ -19,6 +19,7 @@ const App = () => {
               <Route path="/mypage" element={<MyPage />} />
             </Routes>
           </Grid>
+          
         </Grid>
       </div>
     </Router>

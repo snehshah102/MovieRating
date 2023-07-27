@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import ReviewPage from './Review' 
 
 const Review = () => {
   return (
@@ -16,6 +17,7 @@ const Review = () => {
           <Button component={Link} to="/mypage" color="inherit">My Page</Button>
         </Toolbar>
       </AppBar>
+      <ReviewPage/>
     </>
   );
 };
