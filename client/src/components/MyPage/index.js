@@ -41,9 +41,6 @@ const MyPage = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Navigation Bar
-          </Typography>
           <Button component={Link} to="/" color="inherit">Landing</Button>
           <Button component={Link} to="/search" color="inherit">Search</Button>
           <Button component={Link} to="/review" color="inherit">Review</Button>
@@ -54,7 +51,7 @@ const MyPage = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        minHeight="100vh"
+        minHeight="60vh" 
       >
         <Box p={3} boxShadow={6} borderRadius={12} bgcolor="white" width="75%">
           <Typography variant="h4" align="center" gutterBottom>
