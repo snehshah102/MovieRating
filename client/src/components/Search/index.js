@@ -23,7 +23,6 @@ const Search = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Call the API to search for movies using the entered criteria
     try {
       const searchBar = {
         movieName: movieName,

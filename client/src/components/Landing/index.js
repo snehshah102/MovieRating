@@ -8,7 +8,7 @@ const Landing = () => {
     <div className="landing-container">
       <AppBar position="static">
         <Toolbar>
-          <Button component={Link} to="/" color="inherit">Home</Button>
+          <Button component={Link} to="/" color="inherit">Landing</Button>
           <Button component={Link} to="/search" color="inherit">Search</Button>
           <Button component={Link} to="/review" color="inherit">Review</Button>
           <Button component={Link} to="/mypage" color="inherit">My Page</Button>
@@ -29,11 +29,11 @@ const Landing = () => {
               <CardContent>
                 <Typography variant="h5">Search Movie Reviews</Typography>
                 <Typography variant="body1">
-                  Use our powerful search feature to find reviews
+                  Use our powerful search feature to find reviews to your favourite movies! 
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button component={Link} to="/search" color="primary">Search Movie</Button>
+                <Button component={Link} to="/search" color="primary">Search A Movie Review</Button>
               </CardActions>
             </Card>
           </Grid>
@@ -46,7 +46,7 @@ const Landing = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button component={Link} to="/review" color="primary">Review a Movie</Button>
+                <Button component={Link} to="/review" color="primary">Write A Movie Review</Button>
               </CardActions>
             </Card>
           </Grid>
@@ -59,7 +59,7 @@ const Landing = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button component={Link} to="/mypage" color="primary">Watch Movie Trailer</Button>
+                <Button component={Link} to="/mypage" color="primary">Watch A Movie Trailer</Button>
               </CardActions>
             </Card>
           </Grid>
