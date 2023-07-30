@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Select, MenuItem, FormControl, InputLabel, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const MyPage = () => {
@@ -54,9 +54,11 @@ const MyPage = () => {
         minHeight="60vh" 
       >
         <Box p={3} boxShadow={6} borderRadius={12} bgcolor="white" width="75%">
-          <Typography variant="h4" align="center" gutterBottom>
+        <Grid item xs={12}>
+          <Typography variant="h3" gutterBottom align="center">
             Movie Trailers
           </Typography>
+          </Grid>
           <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
             <InputLabel>Select a movie</InputLabel>
             <Select value={selectedMovie ? selectedMovie.id : ''} onChange={handleMovieChange} label="Select a movie">
